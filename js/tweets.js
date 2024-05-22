@@ -28,7 +28,7 @@ function agregarTweet(e){
         console.log(tweets);
     }
     crearHTML();
-    formulario.reset
+    formulario.reset()
 }
 
 function mostrarError(mensaje){
