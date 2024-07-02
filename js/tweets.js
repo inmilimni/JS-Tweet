@@ -5,6 +5,11 @@ const listaTweets = document.querySelector('#lista-tweets');
 let tweets = [];
 
 formulario.addEventListener('submit', agregarTweet);
+document.addEventListener('DOMContentLoaded', ()=>{
+    tweets = JSON.parse(localStorage.getItem('tweet')) || []
+    console.log(tweets);
+    crearHTML();
+})
 
 function agregarTweet(e){
     e.preventDefault();
@@ -25,6 +30,8 @@ function agregarTweet(e){
                 id: Date.now()
                 }
         tweets = [...tweets, tweetObj];
+        const tweetLS = JSON.stringify(tweets);
+        localStorage.setItem('tweet', tweetLS);
         console.log(tweets);
     }
     crearHTML();
@@ -81,6 +88,8 @@ function limpiarHTML(){
 function borrarTweet(id){
     console.log('ingresar a borrar')
     tweets = tweets.filter(tweets => tweets.id !== id);
+    const tweetLS = JSON.stringify(tweets);
+    localStorage.setItem('tweet', tweetLS);
     console.log(tweets);
     crearHTML();
  }
